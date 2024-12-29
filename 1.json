@@ -1,0 +1,58 @@
+{
+    "announce": [
+      {
+        "id": 1,
+        "type": "bug",
+        "pinned": true,
+        "version": "2.5",
+        "time": 1738000000000,
+        "title": {
+          "zh": "修复用户登录问题",
+          "en": "Fixed Login Issue"
+        },
+        "content": {
+          "zh": {
+            "bug": ["修复了用户无法登录的问题", "修复了登录超时的错误"]
+          },
+          "en": {
+            "bug": ["Fixed the issue where users could not log in", "Fixed login timeout error"]
+          }
+        },
+        "author": "开发团队",
+        "priority": {
+          "zh": "高",
+          "en": "high"
+        },
+        "icon": "bug-icon.png"
+      },
+      {
+        "id": 2,
+        "type": "update",
+        "pinned": false,
+        "version": "3.0",
+        "time": 1739000000000,
+        "title": {
+          "zh": "3.0版本更新",
+          "en": "3.0 Version Update"
+        },
+        "content": {
+          "zh": {
+            "feature": ["全新UI设计", "新增夜间模式"],
+            "bug": ["修复了系统卡顿问题"],
+            "opt": ["优化数据加载速度"]
+          },
+          "en": {
+            "feature": ["New UI Design", "Added Dark Mode"],
+            "bug": ["Fixed system lag issue"],
+            "opt": ["Optimized data loading speed"]
+          }
+        },
+        "author": "开发团队",
+        "priority": {
+          "zh": "中",
+          "en": "medium"
+        },
+        "icon": "update-icon.png"
+      }
+    ]
+  }
