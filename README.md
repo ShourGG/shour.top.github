@@ -1,70 +1,152 @@
-项目功能简介与使用说明
-项目功能
-该项目是一个通知中心组件，旨在提供动态通知展示、数据交互及UI响应的开箱即用解决方案。其核心功能包括：
+# 通知中心组件
 
-通知图标：页面右上角显示通知图标，带有未读数量徽标，支持点击后打开通知面板。
-通知面板：在页面右侧弹出，展示完整通知列表，支持分类（如Bug修复、功能更新等）。
-数据动态加载：通过外部JSON文件动态加载通知内容。
-通知优先级：支持通知置顶（pinned属性）。
-多语言支持：支持中英文通知内容（在JSON中定义）。
-响应式UI设计：兼容移动端与桌面端，设计风格现代。
-使用步骤
-1. 环境要求
-需要Web服务器（如Nginx、Apache）托管前端代码，确保JSON数据文件可访问。
-现代浏览器，支持JavaScript的执行。
-2. 文件结构
-index.html：主HTML文件，包含通知中心的前端代码。
-1.json：通知数据文件，包含所有通知内容的动态配置。
-图标资源（如notification-icon.png、bug-icon.png）：通知图标。
-3. 部署说明
-将index.html文件上传至服务器的Web目录。
-将1.json（动态数据文件）存储到GitHub仓库或其他可访问的服务器路径。
-确保HTML文件中正确配置了数据文件路径：
-javascript
-复制代码
-const dataUrl = 'https://shourgg.github.io/-/1.json'; // JSON 数据地址
-4. 自定义配置
-JSON数据说明：
+## 项目简介
 
-type：通知类型，支持update（更新通知）与bug（修复通知）。
-pinned：是否置顶，true表示通知优先展示。
-version：通知适用版本。
-time：通知发布时间，UNIX时间戳格式。
-title：通知标题，支持多语言。
-content：通知内容，包含feature（新特性）、bug（修复内容）、opt（优化内容）。
-author：通知发布者。
-示例：
-json
-复制代码
+这是一个轻量级的通知中心组件，提供了动态通知展示、数据交互和响应式用户界面的解决方案。该项目支持多语言、动态数据加载、通知优先级展示，适用于任何需要通知功能的Web应用。
+
+---
+
+## 功能特点
+
+- **通知图标**：右上角显示通知图标，支持徽标显示未读数量。
+- **通知面板**：在页面右侧弹出，展示完整通知列表，支持按类型和优先级分类。
+- **数据动态加载**：通过外部JSON文件动态加载通知内容。
+- **通知优先级**：支持通知置顶功能。
+- **多语言支持**：支持中英文通知内容，易于扩展至其他语言。
+- **响应式UI**：兼容桌面端和移动端，具有现代设计风格。
+
+---
+
+## 快速开始
+
+### 环境要求
+
+- **Web服务器**：需要托管前端代码（如Nginx、Apache）。
+- **现代浏览器**：支持JavaScript的执行。
+
+### 文件结构
+
+```plaintext
+├── index.html         # 通知中心前端代码
+├── 1.json             # 通知数据文件
+├── assets/            # 图标等静态资源
+```
+
+### 部署步骤
+
+1. 将`index.html`文件上传到Web服务器的根目录。
+2. 将`1.json`（动态数据文件）存储到可访问的服务器路径或GitHub仓库。
+3. 确保HTML文件中正确配置了数据文件路径：
+   ```javascript
+   const dataUrl = 'https://shourgg.github.io/-/1.json'; // JSON 数据地址
+   ```
+4. 启动服务器，访问部署的HTML文件，即可查看通知中心。
+
+---
+
+## 使用说明
+
+### 数据格式
+通知内容通过JSON文件配置，支持以下字段：
+
+- **`id`**：通知ID（唯一标识）。
+- **`type`**：通知类型，支持`update`（更新通知）和`bug`（修复通知）。
+- **`pinned`**：是否置顶，`true`表示通知优先展示。
+- **`version`**：通知适用版本。
+- **`time`**：通知发布时间，UNIX时间戳格式。
+- **`title`**：通知标题，支持多语言（如`zh`和`en`）。
+- **`content`**：通知内容，包含`feature`（新特性）、`bug`（修复内容）、`opt`（优化内容）。
+- **`author`**：通知发布者。
+- **`icon`**：通知类型图标的链接。
+
+#### 数据示例
+```json
 {
-  "id": 2,
-  "type": "update",
-  "pinned": false,
-  "version": "3.0",
-  "time": 1739000000000,
-  "title": {
-    "zh": "3.0版本更新",
-    "en": "3.0 Version Update"
-  },
-  "content": {
-    "zh": {
-      "feature": ["全新UI设计", "新增夜间模式"],
-      "bug": ["修复了系统卡顿问题"],
-      "opt": ["优化数据加载速度"]
-    },
-    "en": {
-      "feature": ["New UI Design", "Added Dark Mode"],
-      "bug": ["Fixed system lag issue"],
-      "opt": ["Optimized data loading speed"]
+  "announce": [
+    {
+      "id": 2,
+      "type": "update",
+      "pinned": false,
+      "version": "3.0",
+      "time": 1739000000000,
+      "title": {
+        "zh": "3.0版本更新",
+        "en": "3.0 Version Update"
+      },
+      "content": {
+        "zh": {
+          "feature": ["全新UI设计", "新增夜间模式"],
+          "bug": ["修复了系统卡顿问题"],
+          "opt": ["优化数据加载速度"]
+        },
+        "en": {
+          "feature": ["New UI Design", "Added Dark Mode"],
+          "bug": ["Fixed system lag issue"],
+          "opt": ["Optimized data loading speed"]
+        }
+      },
+      "author": "开发团队",
+      "icon": "update-icon.png"
     }
-  },
-  "author": "开发团队",
-  "icon": "update-icon.png"
+  ]
 }
-语言切换：目前UI文字默认支持中文，可根据需要扩展到其他语言：
+```
 
-javascript
-复制代码
+### 通知图标
+右上角通知图标显示未读通知数量，支持点击后打开通知面板。
+
+### 通知面板
+- 点击通知图标，面板从右侧弹出，展示完整的通知内容。
+- 支持按通知类型（`bug`、`update`）和优先级（置顶）分类。
+- 通知卡片显示发布时间、作者及详细内容。
+
+---
+
+## 开发者说明
+
+### 核心逻辑
+
+#### 数据加载
+通过`fetch`方法从外部JSON文件加载通知数据：
+```javascript
+fetch(dataUrl)
+  .then(res => res.json())
+  .then(data => renderNotifications(data));
+```
+
+#### 渲染通知
+函数`renderNotifications`实现以下功能：
+- 按`pinned`优先级对通知排序。
+- 动态生成HTML结构，支持多语言内容。
+- 更新徽标显示未读数量。
+
+#### 通知交互
+- 点击通知图标，打开通知面板：
+  ```javascript
+  notificationIcon.addEventListener('click', () => {
+    notificationPanel.classList.add('open');
+  });
+  ```
+- 点击关闭按钮，关闭通知面板：
+  ```javascript
+  closePanelButton.addEventListener('click', () => {
+    notificationPanel.classList.remove('open');
+  });
+  ```
+
+### 样式说明
+CSS采用现代设计风格，主要样式包括：
+- **通知图标**：悬停放大效果，显示未读徽标。
+- **通知面板**：从右侧平滑弹出，支持滚动查看。
+- **通知卡片**：带有阴影和悬停提升效果的卡片式设计。
+
+---
+
+## 自定义指南
+
+### 修改语言
+可以通过扩展`uiText`对象实现更多语言支持：
+```javascript
 const uiText = {
   zh: {
     releaseTime: '发布时间',
@@ -81,4 +163,16 @@ const uiText = {
     optimizations: 'Optimizations:'
   }
 };
-图标自定义：更换通知类型图标，修改icon属性链接即可。
+```
+
+### 自定义图标
+替换通知类型图标，修改JSON数据中的`icon`字段即可：
+```json
+"icon": "custom-icon.png"
+```
+
+---
+
+## 许可证
+
+该项目采用 [MIT License](LICENSE)。
